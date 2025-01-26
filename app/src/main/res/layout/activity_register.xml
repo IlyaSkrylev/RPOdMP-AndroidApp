@@ -8,26 +8,24 @@
     android:layout_margin="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Register">
+    tools:context=".Register" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingBottom="16dp">
+        android:layout_gravity="center">
 
         <ImageView
             android:id="@+id/back_button"
-            android:layout_width="2dp"
+            android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/back_arrow"
-            android:contentDescription="Назад" />
+            android:src="@drawable/back_arrow" />
 
         <TextView
             android:id="@+id/back_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Назад"
+            android:text="@string/login"
             android:textColor="@android:color/black"
             android:layout_toEndOf="@id/back_button"
             android:layout_centerInParent="true"
@@ -38,7 +36,7 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Регистрация"
+        android:text="@string/registration"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginBottom="24dp"/>
@@ -47,37 +45,95 @@
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Электронная почта"
+        android:autofillHints="emailAddress"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:background="@drawable/edit_text_background"
         android:padding="12dp"
         android:layout_marginBottom="16dp"/>
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Пароль"
-        android:inputType="textPassword"
-        android:background="@drawable/edit_text_background"
-        android:padding="12dp"
-        android:layout_marginBottom="24dp"/>
+    <TextView
+        android:id="@+id/error_email"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="left"
+        android:textColor="@color/red"
+        android:layout_marginTop="-8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="invisible"/>
 
-    <EditText
-        android:id="@+id/repeat_password"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Повторите пароль"
-        android:inputType="textPassword"
-        android:background="@drawable/edit_text_background"
-        android:padding="12dp"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="18dp">
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:padding="12dp" />
+
+        <ImageView
+            android:id="@+id/show_password"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:layout_gravity="end"
+            android:padding="10dp"
+            android:src="@drawable/icon_hide_eye" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/error_password"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="left"
+        android:textColor="@color/red"
+        android:layout_marginTop="-8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="invisible"/>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp">
+
+        <EditText
+            android:id="@+id/repeat_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/repeat_password"
+            android:inputType="textPassword"
+            android:background="@drawable/edit_text_background"
+            android:padding="12dp" />
+
+        <ImageView
+            android:id="@+id/show_repeated_password"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:layout_gravity="end"
+            android:padding="10dp"
+            android:src="@drawable/icon_hide_eye" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/error_repeated_password"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="left"
+        android:textColor="@color/red"
+        android:layout_marginTop="-8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="invisible"/>
 
     <Button
-        android:id="@+id/login_button"
+        android:id="@+id/register_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Зарегистрироваться"
+        android:text="@string/register"
         android:textColor="@android:color/white"
         android:background="@drawable/rounded_button_corners"
         android:padding="12dp"/>

@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">AndroidApp</string>
+    <string name="login">Log in</string>
+    <string name="authorization">Authorization</string>
+    <string name="register">Register</string>
+    <string name="registration">Registration</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="enter">Enter</string>
+    <string name="register_offer">Don\'t have an account? Register!</string>
+
+    <string name="err_empty_field">The field must\'t be empty</string>
+    <string name="err_incorrect_email_format">Incorrect email format</string>
+    <string name="err_passwords_must_match">Passwords must match</string>
+    <string name="err_small_password">Password must contain at least 8 characters</string>
+
+    <string name="log_out">Log out</string>
+    <string name="profile">Profile</string>
+    <string name="back">Back</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="patronymic">Patronymic</string>
 </resources>

@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="Авторизация"
+        android:text="@string/authorization"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -25,19 +25,52 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="@drawable/edit_text_background"
-        android:hint="Электронная почта"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:padding="12dp" />
 
-    <EditText
-        android:id="@+id/password"
+    <TextView
+        android:id="@+id/error_email"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="left"
+        android:textColor="@color/red"
+        android:layout_marginTop="-8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="invisible"/>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/edit_text_background"
-        android:hint="Пароль"
-        android:inputType="textPassword"
-        android:padding="12dp" />
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:padding="12dp" />
+
+        <ImageView
+            android:id="@+id/show_password"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:layout_gravity="end"
+            android:padding="10dp"
+            android:src="@drawable/icon_hide_eye" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/error_password"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="left"
+        android:textColor="@color/red"
+        android:layout_marginTop="-8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/login_button"
@@ -45,17 +78,15 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_button_corners"
         android:padding="12dp"
-        android:text="Войти"
+        android:text="@string/enter"
         android:textColor="@android:color/white" />
-
 
     <TextView
         android:id="@+id/register_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:onClick="OpenRegisterPage"
-        android:text="Нет аккаунта? Зарегистрируйтесь!"
+        android:text="@string/register_offer"
         android:textColor="@android:color/holo_blue_light" />
 
 </LinearLayout>

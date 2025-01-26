@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Profile">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/back_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="35dp"
+            android:text="@string/back"
+            android:textSize="18sp"/>
+
+        <ImageView
+            android:id="@+id/back_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="start"
+            android:layout_marginTop="0dp"
+            android:src="@drawable/back_arrow" />
+
+        <TextView
+            android:id="@+id/logout_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="@string/log_out"
+            android:textSize="18sp"/>
+
+        <ImageView
+            android:id="@+id/logout_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="68dp"
+            android:src="@drawable/icon_logout" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="6dp"
+        android:gravity="center">
+
+
+        <ImageView
+            android:id="@+id/userAvatar"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/circle_background"
+            android:src="@drawable/profile_icon_empty"
+            android:layout_marginBottom="24dp"/>
+
+        <EditText
+            android:id="@+id/first_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:layout_marginBottom="15dp"
+            android:hint="@string/first_name"
+            android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/last_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/last_name"
+            android:layout_marginBottom="15dp"
+            android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/patronymic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/patronymic"
+            android:layout_marginBottom="15dp"
+            android:padding="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <View
+                    android:layout_width="115dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/rounded_rectangle" />
+
+                <Spinner
+                    android:id="@+id/spinner_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:minHeight="48dp" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <View
+                    android:layout_width="115dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/rounded_rectangle" />
+
+                <Spinner
+                    android:id="@+id/spinner_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:minHeight="48dp" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <View
+                    android:layout_width="115dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/rounded_rectangle" />
+
+                <Spinner
+                    android:id="@+id/spinner_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:minHeight="48dp" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button_corners"
+            android:padding="12dp"
+            android:text="@string/enter"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+</LinearLayout>
