@@ -83,7 +83,6 @@ class Login : AppCompatActivity() {
 
     public override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if (currentUser != null) {
             val intent = Intent(this, Main::class.java)

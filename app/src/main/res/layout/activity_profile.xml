@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -19,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
+            android:textColor="@color/black"
             android:layout_marginStart="35dp"
             android:text="@string/back"
             android:textSize="18sp"/>
@@ -36,6 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:textColor="@color/black"
             android:text="@string/log_out"
             android:textSize="18sp"/>
 
@@ -49,6 +52,9 @@
             android:src="@drawable/icon_logout" />
     </FrameLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -66,6 +72,13 @@
             android:src="@drawable/profile_icon_empty"
             android:layout_marginBottom="24dp"/>
 
+        <TextView
+            android:id="@+id/tvFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/first_name"
+            android:layout_marginBottom="3dp" />
         <EditText
             android:id="@+id/first_name"
             android:layout_width="match_parent"
@@ -75,6 +88,13 @@
             android:hint="@string/first_name"
             android:padding="12dp" />
 
+        <TextView
+            android:id="@+id/tvLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/last_name"
+            android:layout_marginBottom="3dp" />
         <EditText
             android:id="@+id/last_name"
             android:layout_width="match_parent"
@@ -84,6 +104,13 @@
             android:layout_marginBottom="15dp"
             android:padding="12dp" />
 
+        <TextView
+            android:id="@+id/tvPatronymic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/patronymic"
+            android:layout_marginBottom="3dp" />
         <EditText
             android:id="@+id/patronymic"
             android:layout_width="match_parent"
@@ -93,69 +120,114 @@
             android:layout_marginBottom="15dp"
             android:padding="12dp" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvBirthDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="6dp"
+            android:layout_marginLeft="5dp"
+            android:text="@string/birth_date"
+            android:layout_marginBottom="3dp" />
+        <EditText
+            android:id="@+id/birth_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/birth_date"
             android:layout_marginBottom="15dp"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:focusable="false"
+            android:padding="12dp" />
 
-            <FrameLayout
-                android:layout_width="0dp"
+        <TextView
+            android:id="@+id/tvGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/sex"
+            android:layout_marginBottom="3dp" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="15dp">
+            <View
+                android:id="@+id/gender_back"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/view_gray_borders" />
+
+            <Spinner
+                android:id="@+id/spinner_gender"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:minHeight="48dp" />
+        </FrameLayout>
 
-                <View
-                    android:layout_width="115dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/rounded_rectangle" />
+        <TextView
+            android:id="@+id/tvTelephoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/telephone_number"
+            android:layout_marginBottom="3dp" />
+        <EditText
+            android:id="@+id/telephone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/telephone_number"
+            android:layout_marginBottom="15dp"
+            android:padding="12dp" />
 
-                <Spinner
-                    android:id="@+id/spinner_day"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:minHeight="48dp" />
-            </FrameLayout>
+        <TextView
+            android:id="@+id/tvCountry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/country"
+            android:layout_marginBottom="3dp" />
+        <EditText
+            android:id="@+id/country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/country"
+            android:layout_marginBottom="15dp"
+            android:padding="12dp" />
 
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+        <TextView
+            android:id="@+id/tvCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/city"
+            android:layout_marginBottom="3dp" />
+        <EditText
+            android:id="@+id/city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/city"
+            android:layout_marginBottom="15dp"
+            android:padding="12dp" />
 
-                <View
-                    android:layout_width="115dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/rounded_rectangle" />
-
-                <Spinner
-                    android:id="@+id/spinner_month"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:minHeight="48dp" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <View
-                    android:layout_width="115dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/rounded_rectangle" />
-
-                <Spinner
-                    android:id="@+id/spinner_year"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:minHeight="48dp" />
-            </FrameLayout>
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/description"
+            android:layout_marginBottom="3dp" />
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/description"
+            android:inputType="textMultiLine"
+            android:gravity="top|start"
+            android:scrollbars="vertical"
+            android:minHeight="100dp"
+            android:layout_marginBottom="25dp"
+            android:padding="12dp" />
 
         <Button
             android:id="@+id/save_button"
@@ -163,9 +235,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_button_corners"
             android:padding="12dp"
-            android:text="@string/enter"
+            android:text="@string/save"
             android:textColor="@android:color/white" />
 
     </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>
