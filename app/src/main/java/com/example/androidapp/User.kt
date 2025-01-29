@@ -1,8 +1,15 @@
 package com.example.androidapp
 
-import android.media.Image
-
-data class User(val firstName: String? = null, val surname: String? = null, val patronymic: String? = null,
-                val birthDay: Date?, val gender: Gender, val telephonNumber: String?, val counrtry: String?,
-                val city: String?, val destination: String?, val avatar: Image?, val email: String?
+data class User(val email: String? = null,
+                val uid: String? = null,
+                val firstname: String? = null,
+                val lastname: String? = null,
+                val patronymic: String? = null,
+                val birthDay: String? = null,
+                val gender: String? = null,
+                val telephonenumber: String? = null,
+                val counrtry: String? = null,
+                val city: String? = null,
+                val description: String? = null,
+                val avatar: String? = null
                 )
