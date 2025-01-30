@@ -8,7 +8,7 @@
     android:layout_margin="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Register" >
+    tools:context=".RegisterActivity" >
 
     <RelativeLayout
         android:layout_width="match_parent"

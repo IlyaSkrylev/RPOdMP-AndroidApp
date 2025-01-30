@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ProfileActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/back_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textColor="@color/black"
+            android:layout_marginStart="35dp"
+            android:text="@string/back"
+            android:textSize="18sp"/>
+
+        <ImageView
+            android:id="@+id/back_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="start"
+            android:layout_marginTop="0dp"
+            android:src="@drawable/back_arrow" />
+
+        <TextView
+            android:id="@+id/logout_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textColor="@color/black"
+            android:text="@string/log_out"
+            android:textSize="18sp"/>
+
+        <ImageView
+            android:id="@+id/logout_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="68dp"
+            android:src="@drawable/icon_logout" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="6dp"
+            android:gravity="center">
+
+            <!-- //////////////////////////////////////////////// -->
+            <TextView
+                style="@style/generalCaption"
+                android:text="@string/basic_data" />
+
+            <TextView
+                android:id="@+id/tvName"
+                style="@style/baseInscription"
+                android:text="@string/name" />
+            <EditText
+                android:id="@+id/etName"
+                style = "@style/baseEdit"
+                android:hint="@string/name" />
+
+            <TextView
+                android:id="@+id/tvManufacturerCode"
+                style="@style/baseInscription"
+                android:text="@string/manufacturer_code" />
+            <EditText
+                android:id="@+id/etManufacturerCode"
+                style = "@style/baseEdit"
+                android:hint="@string/manufacturer_code" />
+
+            <TextView
+                android:id="@+id/tvPhoneBrand"
+                style="@style/baseInscription"
+                android:text="@string/phone_brand" />
+            <EditText
+                android:id="@+id/etPhoneBrand"
+                style = "@style/baseEdit"
+                android:hint="@string/phone_brand" />
+
+            <TextView
+                android:id="@+id/tvPhoneModel"
+                style="@style/baseInscription"
+                android:text="@string/phone_model" />
+            <EditText
+                android:id="@+id/etPhoneModel"
+                style = "@style/baseEdit"
+                android:hint="@string/phone_model" />
+
+            <TextView
+                android:id="@+id/tvEan"
+                style="@style/baseInscription"
+                android:text="@string/ean" />
+            <EditText
+                android:id="@+id/etEan"
+                style = "@style/baseEdit"
+                android:hint="@string/ean"
+                android:inputType="number"/>
+
+            <!-- //////////////////////////////////////////////// -->
+            <TextView
+                style="@style/generalCaption"
+                android:text="@string/physical_parameters"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tvColor"
+                style="@style/baseInscription"
+                android:text="@string/color" />
+            <EditText
+                android:id="@+id/etColor"
+                style = "@style/baseEdit"
+                android:hint="@string/color" />
+
+            <TextView
+                android:id="@+id/tvMaterial"
+                style="@style/baseInscription"
+                android:text="@string/material" />
+            <EditText
+                android:id="@+id/etMaterial"
+                style = "@style/baseEdit"
+                android:hint="@string/material" />
+
+            <TextView
+                android:id="@+id/tvWidth"
+                style="@style/baseInscription"
+                android:text="@string/width" />
+            <EditText
+                android:id="@+id/etWidth"
+                style = "@style/baseEdit"
+                android:hint="@string/width"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/tvHeight"
+                style="@style/baseInscription"
+                android:text="@string/height" />
+            <EditText
+                android:id="@+id/etHeight"
+                style = "@style/baseEdit"
+                android:hint="@string/height"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/tvDepth"
+                style="@style/baseInscription"
+                android:text="@string/depth" />
+            <EditText
+                android:id="@+id/etDepth"
+                style = "@style/baseEdit"
+                android:hint="@string/depth"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/tvWeight"
+                style="@style/baseInscription"
+                android:text="@string/weight" />
+            <EditText
+                android:id="@+id/etWeight"
+                style = "@style/baseEdit"
+                android:hint="@string/weight"
+                android:inputType="number"/>
+
+            <!-- //////////////////////////////////////////////// -->
+            <TextView
+                style="@style/generalCaption"
+                android:text="@string/display"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tvScreenDiagonal"
+                style="@style/baseInscription"
+                android:text="@string/screen_diagonal" />
+            <EditText
+                android:id="@+id/etScreenDiagonal"
+                style = "@style/baseEdit"
+                android:hint="@string/screen_diagonal"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/tvDisplayType"
+                style="@style/baseInscription"
+                android:text="@string/display_type" />
+            <EditText
+                android:id="@+id/etDisplayType"
+                style = "@style/baseEdit"
+                android:hint="@string/display_type" />
+
+            <TextView
+                android:id="@+id/tvTouchScreen"
+                style="@style/baseInscription"
+                android:text="@string/touch_screen" />
+            <EditText
+                android:id="@+id/etTouchScreen"
+                style = "@style/baseEdit"
+                android:hint="@string/touch_screen" />
+
+            <TextView
+                android:id="@+id/tvPixelDensity"
+                style="@style/baseInscription"
+                android:text="@string/pixel_density" />
+            <EditText
+                android:id="@+id/etPixelDensity"
+                style = "@style/baseEdit"
+                android:hint="@string/pixel_density"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/tvScreenResolution"
+                style="@style/baseInscription"
+                android:text="@string/screen_resolution" />
+            <EditText
+                android:id="@+id/etScreenResolution"
+                style = "@style/baseEdit"
+                android:hint="@string/screen_resolution" />
+
+            <!-- //////////////////////////////////////////////// -->
+            <TextView
+                style="@style/generalCaption"
+                android:text="@string/Apparatus"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tvRearCameraResolution"
+                style="@style/baseInscription"
+                android:text="@string/rear_camera_resolution" />
+            <EditText
+                android:id="@+id/etRearCameraResolution"
+                style = "@style/baseEdit"
+                android:hint="@string/rear_camera_resolution"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/tvFrontCameraResolution"
+                style="@style/baseInscription"
+                android:text="@string/front_camera_resolution" />
+            <EditText
+                android:id="@+id/etFrontCameraResolution"
+                style = "@style/baseEdit"
+                android:hint="@string/front_camera_resolution"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/tvCameraFeatures"
+                style="@style/baseInscription"
+                android:text="@string/camera_features" />
+            <EditText
+                android:id="@+id/etCameraFeatures"
+                style = "@style/baseEdit"
+                android:hint="@string/camera_features" />
+
+            <TextView
+                android:id="@+id/tvResolutionOfRecordedVideos"
+                style="@style/baseInscription"
+                android:text="@string/screen_diagonal" />
+            <EditText
+                android:id="@+id/etResolutionOfRecordedVideos"
+                style = "@style/baseEdit"
+                android:hint="@string/screen_diagonal" />
+
+            <!-- //////////////////////////////////////////////// -->
+            <TextView
+                style="@style/generalCaption"
+                android:text="@string/processor"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tvProcessor"
+                style="@style/baseInscription"
+                android:text="@string/processor" />
+            <EditText
+                android:id="@+id/etProcessor"
+                style = "@style/baseEdit"
+                android:hint="@string/processor"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/tvProcessorFrequency"
+                style="@style/baseInscription"
+                android:text="@string/processor_frequency" />
+            <EditText
+                android:id="@+id/etProcessorFrequency"
+                style = "@style/baseEdit"
+                android:hint="@string/processor_frequency"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/tvNumberOfProcessorCores"
+                style="@style/baseInscription"
+                android:text="@string/number_of_processor_cores" />
+            <EditText
+                android:id="@+id/etNumberOfProcessorCores"
+                style = "@style/baseEdit"
+                android:hint="@string/number_of_processor_cores"
+                android:inputType="number"/>
+
+            <!-- //////////////////////////////////////////////// -->
+            <TextView
+                style="@style/generalCaption"
+                android:text="@string/detailed_information"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tvBuiltInMemory"
+                style="@style/baseInscription"
+                android:text="@string/builtInMemory" />
+            <EditText
+                android:id="@+id/etBuiltInMemory"
+                style = "@style/baseEdit"
+                android:hint="@string/builtInMemory"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/tvRamMemory"
+                style="@style/baseInscription"
+                android:text="@string/ramMemory" />
+            <EditText
+                android:id="@+id/etRamMemory"
+                style = "@style/baseEdit"
+                android:hint="@string/ramMemory"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/tvOperatingSystem"
+                style="@style/baseInscription"
+                android:text="@string/operatingSystem" />
+            <EditText
+                android:id="@+id/etOperatingSystem"
+                style = "@style/baseEdit"
+                android:hint="@string/operatingSystem"/>
+
+            <TextView
+                android:id="@+id/tvBatteryCapacity"
+                style="@style/baseInscription"
+                android:text="@string/batteryCapacity" />
+            <EditText
+                android:id="@+id/etBatteryCapacity"
+                style = "@style/baseEdit"
+                android:hint="@string/batteryCapacity"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/tvConnectors"
+                style="@style/baseInscription"
+                android:text="@string/connectors" />
+            <EditText
+                android:id="@+id/etConnectors"
+                style = "@style/baseEdit"
+                android:hint="@string/connectors" />
+
+            <Button
+                android:id="@+id/create_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_button_corners"
+                android:padding="12dp"
+                android:text="@string/create"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

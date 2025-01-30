@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Profile">
+    tools:context=".ProfileActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -74,76 +74,45 @@
 
         <TextView
             android:id="@+id/tvFirstName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="@string/first_name"
-            android:layout_marginBottom="3dp" />
+            style="@style/baseInscription"
+            android:text="@string/first_name" />
         <EditText
             android:id="@+id/first_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_background"
-            android:layout_marginBottom="15dp"
-            android:hint="@string/first_name"
-            android:padding="12dp" />
+            style = "@style/baseEdit"
+            android:hint="@string/first_name" />
 
         <TextView
             android:id="@+id/tvLastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="@string/last_name"
-            android:layout_marginBottom="3dp" />
+            style="@style/baseInscription"
+            android:text="@string/last_name"/>
         <EditText
             android:id="@+id/last_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_background"
-            android:hint="@string/last_name"
-            android:layout_marginBottom="15dp"
-            android:padding="12dp" />
+            style = "@style/baseEdit"
+            android:hint="@string/last_name"/>
 
         <TextView
             android:id="@+id/tvPatronymic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="@string/patronymic"
-            android:layout_marginBottom="3dp" />
+            style="@style/baseInscription"
+            android:text="@string/patronymic"/>
         <EditText
             android:id="@+id/patronymic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_background"
-            android:hint="@string/patronymic"
-            android:layout_marginBottom="15dp"
-            android:padding="12dp" />
+            style = "@style/baseEdit"
+            android:hint="@string/patronymic"/>
 
         <TextView
             android:id="@+id/tvBirthDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="@string/birth_date"
-            android:layout_marginBottom="3dp" />
+            style="@style/baseInscription"
+            android:text="@string/birth_date"/>
         <EditText
             android:id="@+id/birth_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_background"
+            style = "@style/baseEdit"
             android:hint="@string/birth_date"
-            android:layout_marginBottom="15dp"
-            android:focusable="false"
-            android:padding="12dp" />
+            android:focusable="false" />
 
         <TextView
             android:id="@+id/tvGender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="@string/sex"
-            android:layout_marginBottom="3dp" />
+            style="@style/baseInscription"
+            android:text="@string/sex"/>
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -163,71 +132,43 @@
 
         <TextView
             android:id="@+id/tvTelephoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="@string/telephone_number"
-            android:layout_marginBottom="3dp" />
+            style="@style/baseInscription"
+            android:text="@string/telephone_number"/>
         <EditText
             android:id="@+id/telephone_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_background"
-            android:hint="@string/telephone_number"
-            android:layout_marginBottom="15dp"
-            android:padding="12dp" />
+            style = "@style/baseEdit"
+            android:hint="@string/telephone_number"/>
 
         <TextView
             android:id="@+id/tvCountry"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="@string/country"
-            android:layout_marginBottom="3dp" />
+            style="@style/baseInscription"
+            android:text="@string/country" />
         <EditText
             android:id="@+id/country"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_background"
-            android:hint="@string/country"
-            android:layout_marginBottom="15dp"
-            android:padding="12dp" />
+            style = "@style/baseEdit"
+            android:hint="@string/country"/>
 
         <TextView
             android:id="@+id/tvCity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="@string/city"
-            android:layout_marginBottom="3dp" />
+            style="@style/baseInscription"
+            android:text="@string/city"/>
         <EditText
             android:id="@+id/city"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_background"
-            android:hint="@string/city"
-            android:layout_marginBottom="15dp"
-            android:padding="12dp" />
+            style = "@style/baseEdit"
+            android:hint="@string/city"/>
 
         <TextView
             android:id="@+id/tvDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="@string/description"
-            android:layout_marginBottom="3dp" />
+            style="@style/baseInscription"
+            android:text="@string/description"/>
         <EditText
             android:id="@+id/description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_background"
+            style = "@style/baseEdit"
             android:hint="@string/description"
             android:inputType="textMultiLine"
             android:gravity="top|start"
             android:scrollbars="vertical"
-            android:minHeight="100dp"
-            android:layout_marginBottom="25dp"
-            android:padding="12dp" />
+            android:minHeight="100dp"/>
 
         <Button
             android:id="@+id/save_button"

@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ProfileActivity"
+    android:paddingBottom="15dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="6dp">
+
+        <TextView
+            android:id="@+id/back_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="35dp"
+            android:text="@string/back"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/back_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="start"
+            android:layout_marginTop="0dp"
+            android:src="@drawable/back_arrow" />
+
+        <TextView
+            android:id="@+id/favorite_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="@string/favorites"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/favorite_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="78dp"
+            android:src="@drawable/not_in_favorites" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="6dp">
+
+            <!-- //////////////////////////////////////////////// -->
+            <TextView
+                style="@style/generalCaption"
+                android:text="@string/basic_data" />
+
+            <FrameLayout style="@style/greenFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/name" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/name" />
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/whiteFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/manufacturer_code" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/manufacturer_code" />
+            </FrameLayout>
+
+            <FrameLayout style="@style/greenFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/phone_brand" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/phone_brand" />
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/whiteFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/phone_model" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/phone_model" />
+            </FrameLayout>
+
+            <FrameLayout style="@style/greenFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/ean" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/ean" />
+            </FrameLayout>
+
+            <!-- //////////////////////////////////////////////// -->
+            <TextView
+                style="@style/generalCaption"
+                android:text="@string/physical_parameters"
+                android:layout_marginTop="25dp"/>
+
+            <FrameLayout style="@style/greenFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/color" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/color" />
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/whiteFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/material" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/material" />
+            </FrameLayout>
+
+            <FrameLayout style="@style/greenFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/width" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/width" />
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/whiteFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/height" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/height" />
+            </FrameLayout>
+
+            <FrameLayout style="@style/greenFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/depth" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/depth" />
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/whiteFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/weight" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/weight" />
+            </FrameLayout>
+
+            <!-- //////////////////////////////////////////////// -->
+            <TextView
+                style="@style/generalCaption"
+                android:text="@string/display"
+                android:layout_marginTop="25dp"/>
+
+            <FrameLayout style="@style/greenFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/screen_diagonal" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/screen_diagonal" />
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/whiteFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/display_type" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/display_type" />
+            </FrameLayout>
+
+            <FrameLayout style="@style/greenFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/touch_screen" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/touch_screen" />
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/whiteFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/pixel_density" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/pixel_density" />
+            </FrameLayout>
+
+            <FrameLayout style="@style/greenFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/screen_resolution" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/screen_resolution" />
+            </FrameLayout>
+
+            <!-- //////////////////////////////////////////////// -->
+            <TextView
+                style="@style/generalCaption"
+                android:text="@string/Apparatus"
+                android:layout_marginTop="25dp"/>
+
+            <FrameLayout style="@style/greenFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/rear_camera_resolution" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/rear_camera_resolution" />
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/whiteFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/front_camera_resolution" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/front_camera_resolution" />
+            </FrameLayout>
+
+            <FrameLayout style="@style/greenFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/camera_features" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/camera_features" />
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/whiteFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/resolution_of_recorded_videos" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/resolution_of_recorded_videos" />
+            </FrameLayout>
+
+            <!-- //////////////////////////////////////////////// -->
+            <TextView
+                style="@style/generalCaption"
+                android:text="@string/processor"
+                android:layout_marginTop="25dp"/>
+
+            <FrameLayout style="@style/greenFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/processor" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/processor" />
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/whiteFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/processor_frequency" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/processor_frequency" />
+            </FrameLayout>
+
+            <FrameLayout style="@style/greenFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/number_of_processor_cores" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/number_of_processor_cores" />
+            </FrameLayout>
+
+            <!-- //////////////////////////////////////////////// -->
+            <TextView
+                style="@style/generalCaption"
+                android:text="@string/detailed_information"
+                android:layout_marginTop="25dp"/>
+
+            <FrameLayout style="@style/greenFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/builtInMemory" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/builtInMemory" />
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/whiteFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/ramMemory" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/ramMemory" />
+            </FrameLayout>
+
+            <FrameLayout style="@style/greenFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/operatingSystem" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/operatingSystem" />
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/whiteFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/batteryCapacity" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/batteryCapacity" />
+            </FrameLayout>
+
+            <FrameLayout style="@style/greenFrameLayout">
+                <TextView
+                    style="@style/characteristicName"
+                    android:text="@string/connectors" />
+                <TextView
+                    style="@style/character"
+                    android:text="@string/connectors" />
+            </FrameLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -6,6 +6,10 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.BitmapShader
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Shader
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.icu.util.Calendar
@@ -36,13 +40,11 @@ import com.google.firebase.database.FirebaseDatabase
 import java.io.ByteArrayOutputStream
 import android.util.Base64
 import androidx.core.app.ActivityCompat
-import com.google.common.io.Resources
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.firestore.firestore
 
-class Profile : AppCompatActivity() {
+class ProfileActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private var user: FirebaseUser? = null
     private lateinit var binding: ActivityProfileBinding
@@ -55,7 +57,7 @@ class Profile : AppCompatActivity() {
         this.auth = Firebase.auth
         this.user = auth.currentUser
         if (user == null) {
-            val intent = Intent(this, Login::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -152,13 +154,13 @@ class Profile : AppCompatActivity() {
 
     private fun logOut() {
         auth.signOut()
-        val intent = Intent(this, Login::class.java)
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }
 
     private fun showMainPage() {
-        val intent = Intent(this, Main::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -285,7 +287,8 @@ class Profile : AppCompatActivity() {
                             0,
                             decodedByteArray.size
                         )
-                        binding.userAvatar.setImageBitmap(bitmap)
+                        if (bitmap != null)
+                            binding.userAvatar.setImageBitmap(getCircularBitmap(bitmap))
                     }
 
                 }
@@ -296,6 +299,30 @@ class Profile : AppCompatActivity() {
         })
 
     }
+
+    fun getCircularBitmap(bitmap: Bitmap): Bitmap {
+        val size = Math.min(bitmap.width, bitmap.height)
+        val x = (bitmap.width - size) / 2
+        val y = (bitmap.height - size) / 2
+
+        val squaredBitmap = Bitmap.createBitmap(bitmap, x, y, size, size)
+
+        val circularBitmap = Bitmap.createBitmap(squaredBitmap.width, squaredBitmap.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(circularBitmap)
+
+        val paint = Paint()
+        val shader = BitmapShader(squaredBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
+        paint.shader = shader
+        paint.isAntiAlias = true
+
+        val radius = squaredBitmap.width / 2f
+        canvas.drawCircle(radius, radius, radius, paint)
+
+        squaredBitmap.recycle()
+
+        return circularBitmap
+    }
+
 
     fun setAvatar(){
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -313,7 +340,17 @@ class Profile : AppCompatActivity() {
         if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
             val imageUri: Uri? = data.data
             binding.userAvatar.setImageURI(imageUri)
-            binding.userAvatar.background = resources.getDrawable(R.drawable.circle_background)
+            val bytes = getImageByteArray(binding.userAvatar)
+            val bitmap: Bitmap? = bytes?.let {
+                BitmapFactory.decodeByteArray(
+                    bytes,
+                    0,
+                    it.size
+                )
+            }
+            if (bitmap != null)
+                binding.userAvatar.setImageBitmap(getCircularBitmap(bitmap))
+
         }
     }
 }

@@ -4,10 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.view.Window
-import android.view.WindowId
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -20,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 
-class Main : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private var user: FirebaseUser? = null
 
@@ -47,7 +43,7 @@ class Main : AppCompatActivity() {
         this.auth = Firebase.auth
         this.user = auth.currentUser
         if (user == null){
-            val intent = Intent(this, Login::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -65,13 +61,13 @@ class Main : AppCompatActivity() {
 
     private fun logOut() {
         auth.signOut()
-        val intent = Intent(this, Login::class.java)
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }
 
     private fun showProfilePage(){
-        val intent = Intent(this, Profile::class.java)
+        val intent = Intent(this, ProfileActivity::class.java)
         startActivity(intent)
         finish()
     }

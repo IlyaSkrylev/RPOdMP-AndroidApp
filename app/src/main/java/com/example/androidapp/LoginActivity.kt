@@ -17,10 +17,11 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 
 
-class Login : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     private lateinit var etEmail : EditText
     private lateinit var etPassword : EditText
     private lateinit var btnLogin: Button
@@ -85,7 +86,7 @@ class Login : AppCompatActivity() {
         super.onStart()
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            val intent = Intent(this, Main::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -154,7 +155,7 @@ class Login : AppCompatActivity() {
     }
 
     fun onClickRegister(){
-        val intent = Intent(this, Register::class.java)
+        val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -164,8 +165,14 @@ class Login : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(baseContext, "Successful authorization.", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, Main::class.java)
-                    startActivity(intent)
+
+                    if (etEmail.text.toString() == "admin@gmail.com"){
+                        val intent = Intent(this, MainForAdminActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }
                     finish()
                 } else {
                     Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
