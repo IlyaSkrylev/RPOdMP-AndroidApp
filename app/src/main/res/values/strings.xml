@@ -65,4 +65,7 @@
     <string name="builtInMemory">Built-in memory</string>
     <string name="detailed_information">Detailed information</string>
     <string name="create">Create</string>
+    <string name="adminEmail">admin@gmail.com</string>
+    <string name="choose_images">Choose images</string>
+    <string name="urlToImage">URL to images</string>
 </resources>

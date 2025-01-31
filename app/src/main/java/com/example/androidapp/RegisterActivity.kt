@@ -184,12 +184,19 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     fun CreateAccount(){
-        auth.createUserWithEmailAndPassword(etEmail.text.toString(), etPassword.text.toString())
+        val email = etEmail.text.toString()
+        auth.createUserWithEmailAndPassword(email, etPassword.text.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(baseContext, "Successful registration.", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+
+                    if (email == getString(R.string.adminEmail)){
+                        val intent = Intent(this, MainForAdminActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }
                     finish()
                 } else {
                     Toast.makeText(baseContext, "Registration failed.", Toast.LENGTH_SHORT).show()

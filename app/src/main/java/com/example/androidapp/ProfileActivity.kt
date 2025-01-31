@@ -43,12 +43,15 @@ import androidx.core.app.ActivityCompat
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.toObject
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private var user: FirebaseUser? = null
     private lateinit var binding: ActivityProfileBinding
-    private lateinit var database: DatabaseReference
+    //private lateinit var database: DatabaseReference
+    private lateinit var db: FirebaseFirestore
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -193,12 +196,14 @@ class ProfileActivity : AppCompatActivity() {
             Base64.encodeToString(img, Base64.DEFAULT)
             )
 
-        database = FirebaseDatabase.getInstance().getReference("users")
-        database.child(user?.uid.toString()).setValue(userInfo).addOnSuccessListener {
-            Toast.makeText(this, "Successfully changed", Toast.LENGTH_SHORT).show()
-        }.addOnFailureListener {
-            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
-        }
+        db = FirebaseFirestore.getInstance()
+        db.collection("users").add(userInfo)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Successfully changed", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener{
+                Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+            }
     }
 
     private fun showCalendar() {
@@ -261,42 +266,37 @@ class ProfileActivity : AppCompatActivity() {
         val userId = user?.uid.toString()
         if (userId == null || userId == "") return
 
-        database = FirebaseDatabase.getInstance().getReference("users").child(userId)
-        database.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    snapshot.getValue(User::class.java)?.let { userInfo ->
-                        binding.firstName.setText(userInfo.firstname)
-                        binding.lastName.setText(userInfo.lastname)
-                        binding.patronymic.setText(userInfo.patronymic)
-                        binding.birthDate.setText(userInfo.birthDay)
-                        when (userInfo.gender) {
-                            "none" -> binding.spinnerGender.setSelection(0)
-                            "Male" -> binding.spinnerGender.setSelection(1)
-                            "Female" -> binding.spinnerGender.setSelection(2)
-                            else -> binding.spinnerGender.setSelection(3)
-                        }
-                        binding.telephoneNumber.setText(userInfo.telephonenumber)
-                        binding.country.setText(userInfo.counrtry)
-                        binding.city.setText(userInfo.city)
-                        binding.description.setText(userInfo.description)
+        db = FirebaseFirestore.getInstance()
+        db.collection("users").whereEqualTo("email", user?.email).get()
+            .addOnSuccessListener{ documents ->
+                for (document in documents){
+                    val userInfo = document.toObject(User::class.java)
 
-                        val decodedByteArray = Base64.decode(userInfo.avatar, Base64.DEFAULT)
-                        val bitmap: Bitmap? = BitmapFactory.decodeByteArray(
-                            decodedByteArray,
-                            0,
-                            decodedByteArray.size
-                        )
-                        if (bitmap != null)
-                            binding.userAvatar.setImageBitmap(getCircularBitmap(bitmap))
+                    binding.firstName.setText(userInfo.firstname)
+                    binding.lastName.setText(userInfo.lastname)
+                    binding.patronymic.setText(userInfo.patronymic)
+                    binding.birthDate.setText(userInfo.birthDay)
+                    when (userInfo.gender) {
+                        "none" -> binding.spinnerGender.setSelection(0)
+                        "Male" -> binding.spinnerGender.setSelection(1)
+                        "Female" -> binding.spinnerGender.setSelection(2)
+                        else -> binding.spinnerGender.setSelection(3)
                     }
+                    binding.telephoneNumber.setText(userInfo.telephonenumber)
+                    binding.country.setText(userInfo.counrtry)
+                    binding.city.setText(userInfo.city)
+                    binding.description.setText(userInfo.description)
 
+                    val decodedByteArray = Base64.decode(userInfo.avatar, Base64.DEFAULT)
+                    val bitmap: Bitmap? = BitmapFactory.decodeByteArray(
+                        decodedByteArray,
+                        0,
+                        decodedByteArray.size
+                    )
+                    if (bitmap != null)
+                        binding.userAvatar.setImageBitmap(getCircularBitmap(bitmap))
                 }
             }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
 
     }
 

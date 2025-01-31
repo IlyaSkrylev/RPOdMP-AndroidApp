@@ -86,8 +86,13 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            if (currentUser.email.toString() == getString(R.string.adminEmail)){
+                val intent = Intent(this, MainForAdminActivity::class.java)
+                startActivity(intent)
+            } else {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
             finish()
         }
     }
@@ -161,12 +166,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun AuthorizeUser(){
-        auth.signInWithEmailAndPassword(etEmail.text.toString(), etPassword.text.toString())
+        val email = etEmail.text.toString()
+        auth.signInWithEmailAndPassword(email, etPassword.text.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(baseContext, "Successful authorization.", Toast.LENGTH_SHORT).show()
 
-                    if (etEmail.text.toString() == "admin@gmail.com"){
+                    if (email == getString(R.string.adminEmail)){
                         val intent = Intent(this, MainForAdminActivity::class.java)
                         startActivity(intent)
                     } else {

@@ -1,8 +1,11 @@
 package com.example.androidapp
 
+import android.app.ActionBar
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Base64
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,14 +17,16 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MainForAdminActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private var user: FirebaseUser? = null
     private lateinit var binding: ActivityMainForAdminBinding
-    private lateinit var database: DatabaseReference
+    private lateinit var db: FirebaseFirestore
+
+    private lateinit var adapter: ImageSliderAdapter
+    private val selectedImages = mutableListOf<ByteArray>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +57,7 @@ class MainForAdminActivity : AppCompatActivity() {
         //this.binding.backIcon.setOnClickListener { showMainPage() }
         //this.binding.backLabel.setOnClickListener { showMainPage() }
         this.binding.createButton.setOnClickListener { createSmartphone() }
+        this.binding.chooseImages.setOnClickListener { chooseImages() }
 
     }
 
@@ -62,7 +68,17 @@ class MainForAdminActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun createSmartphone(){
+    private fun createSmartphone() {
+        val base64Images: MutableList<String> = mutableListOf()
+        for (image in selectedImages) {
+            val base64String = Base64.encodeToString(image, Base64.DEFAULT)
+            base64Images.add(base64String)
+        }
+        val urls = this.binding.etImages.text.toString().split("\n")
+        for (url in urls){
+            base64Images.add(url)
+        }
+
         val smartphoneInfo = Smartphone(
             this.binding.etName.text.toString(),
             this.binding.etManufacturerCode.text.toString(),
@@ -84,21 +100,62 @@ class MainForAdminActivity : AppCompatActivity() {
             this.binding.etFrontCameraResolution.text.toString().toInt(),
             this.binding.etCameraFeatures.text.toString(),
             this.binding.etResolutionOfRecordedVideos.text.toString(),
-            this.binding.etProcessor.text.toString().toInt(),
+            this.binding.etProcessor.text.toString(),
             this.binding.etProcessorFrequency.text.toString().toInt(),
             this.binding.etNumberOfProcessorCores.text.toString().toInt(),
             this.binding.etBuiltInMemory.text.toString().toInt(),
             this.binding.etRamMemory.text.toString().toInt(),
             this.binding.etOperatingSystem.text.toString(),
             this.binding.etBatteryCapacity.text.toString().toInt(),
-            this.binding.etConnectors.text.toString()
+            this.binding.etConnectors.text.toString(),
+            base64Images
         )
 
-        database = FirebaseDatabase.getInstance().getReference("smartphones")
-        database.child(smartphoneInfo.ean.toString()).setValue(smartphoneInfo).addOnSuccessListener {
-            Toast.makeText(this, "Successfully changed", Toast.LENGTH_SHORT).show()
-        }.addOnFailureListener {
-            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+        db = FirebaseFirestore.getInstance()
+        db.collection("smartphones").add(smartphoneInfo)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Successfully changed", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener{
+                Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    fun chooseImages() {
+        selectedImages.clear()
+        val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
+            type = "image/*"
+            putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+        }
+        startActivityForResult(intent, PICK_IMAGES)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == PICK_IMAGES && resultCode == Activity.RESULT_OK) {
+            data?.let { intentData ->
+                if (intentData.clipData != null) {
+                    val count = intentData.clipData!!.itemCount
+                    for (i in 0 until count) {
+                        val uri = intentData.clipData!!.getItemAt(i).uri
+                        val byteArray = contentResolver.openInputStream(uri)?.readBytes()
+                        byteArray?.let { selectedImages.add(it) }
+                    }
+                } else {
+                    intentData.data?.let { uri ->
+                        val byteArray = contentResolver.openInputStream(uri)?.readBytes()
+                        byteArray?.let { selectedImages.add(it) }
+                    }
+                }
+                adapter = ImageSliderAdapter(selectedImages)
+                this.binding.viewPager.adapter = adapter
+            }
         }
     }
+
+    companion object {
+        private const val PICK_IMAGES = 1
+    }
+
 }

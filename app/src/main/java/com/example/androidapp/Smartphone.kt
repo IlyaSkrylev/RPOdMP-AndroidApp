@@ -30,7 +30,7 @@ data class Smartphone(
     val resolutionOfRecordedVideos: String? = null,
 
     // Processor
-    val processor: Int,
+    val processor: String? = null,
     val processorFrequency: Int,
     val numberOfProcessorCores: Int,
 
@@ -39,5 +39,7 @@ data class Smartphone(
     val ramMemory: Int,
     val operatingSystem: String? = null,
     val batteryCapacity: Int,
-    val connectors: String? = null
+    val connectors: String? = null,
+
+    val base64Images: List<String>
 )
