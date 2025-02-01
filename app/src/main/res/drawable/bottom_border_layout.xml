@@ -1,0 +1,11 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <color android:color="@color/white"/>
+    </item>
+    <item android:bottom="0dp">
+        <inset android:insetTop="-1dp">
+            <bitmap android:src="@drawable/bottom_border" android:gravity="bottom"/>
+        </inset>
+    </item>
+</layer-list>
+

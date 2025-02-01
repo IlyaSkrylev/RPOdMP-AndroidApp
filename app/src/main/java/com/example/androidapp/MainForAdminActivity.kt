@@ -84,7 +84,7 @@ class MainForAdminActivity : AppCompatActivity() {
             this.binding.etManufacturerCode.text.toString(),
             this.binding.etPhoneBrand.text.toString(),
             this.binding.etPhoneModel.text.toString(),
-            this.binding.etEan.text.toString().toInt(),
+            this.binding.etEan.text.toString(),
             this.binding.etColor.text.toString(),
             this.binding.etMaterial.text.toString(),
             this.binding.etWidth.text.toString().toInt(),

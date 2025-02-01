@@ -68,4 +68,6 @@
     <string name="adminEmail">admin@gmail.com</string>
     <string name="choose_images">Choose images</string>
     <string name="urlToImage">URL to images</string>
+    <string name="memory">Memory</string>
+    <string name="camera">Camera</string>
 </resources>

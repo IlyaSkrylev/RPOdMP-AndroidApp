@@ -169,6 +169,8 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun saveChanges() {
+        val userId = user?.uid
+        if(userId == null) return
 
         val img = getImageByteArray(this.binding.userAvatar)
         val firstName = this.binding.firstName.text.toString()
@@ -183,7 +185,7 @@ class ProfileActivity : AppCompatActivity() {
 
         val userInfo = User(
             user?.email.toString(),
-            user?.uid.toString(),
+            userId.toString(),
             firstName,
             lastName,
             patronymic,
@@ -197,12 +199,34 @@ class ProfileActivity : AppCompatActivity() {
             )
 
         db = FirebaseFirestore.getInstance()
-        db.collection("users").add(userInfo)
-            .addOnSuccessListener {
-                Toast.makeText(this, "Successfully changed", Toast.LENGTH_SHORT).show()
+        db.collection("users")
+            .whereEqualTo("uid", userId)
+            .limit(1)
+            .get()
+            .addOnSuccessListener { documents ->
+                if (!documents.isEmpty) {
+                    val document = documents.first()
+                    val id = document.id
+                    db.collection("users").document(id)
+                        .update(userInfo.toMap())
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Successfully updated", Toast.LENGTH_SHORT).show()
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(this, "Failed to update", Toast.LENGTH_SHORT).show()
+                        }
+                } else {
+                    db.collection("users").add(userInfo.toMap())
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Successfully changed", Toast.LENGTH_SHORT).show()
+                        }
+                        .addOnFailureListener{
+                            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+                        }
+                }
             }
-            .addOnFailureListener{
-                Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -272,18 +296,18 @@ class ProfileActivity : AppCompatActivity() {
                 for (document in documents){
                     val userInfo = document.toObject(User::class.java)
 
-                    binding.firstName.setText(userInfo.firstname)
-                    binding.lastName.setText(userInfo.lastname)
+                    binding.firstName.setText(userInfo.firstName)
+                    binding.lastName.setText(userInfo.lastName)
                     binding.patronymic.setText(userInfo.patronymic)
-                    binding.birthDate.setText(userInfo.birthDay)
-                    when (userInfo.gender) {
+                    binding.birthDate.setText(userInfo.birthDate)
+                    when (userInfo.sex) {
                         "none" -> binding.spinnerGender.setSelection(0)
                         "Male" -> binding.spinnerGender.setSelection(1)
                         "Female" -> binding.spinnerGender.setSelection(2)
                         else -> binding.spinnerGender.setSelection(3)
                     }
-                    binding.telephoneNumber.setText(userInfo.telephonenumber)
-                    binding.country.setText(userInfo.counrtry)
+                    binding.telephoneNumber.setText(userInfo.telephoneNumber)
+                    binding.country.setText(userInfo.country)
                     binding.city.setText(userInfo.city)
                     binding.description.setText(userInfo.description)
 
@@ -352,5 +376,22 @@ class ProfileActivity : AppCompatActivity() {
                 binding.userAvatar.setImageBitmap(getCircularBitmap(bitmap))
 
         }
+    }
+
+    fun User.toMap(): Map<String, Any> {
+        return mapOf(
+            "email" to email,
+            "uid" to uid,
+            "firstName" to firstName,
+            "lastName" to lastName,
+            "patronymic" to patronymic,
+            "birthDate" to birthDate,
+            "sex" to sex,
+            "telNumber" to telephoneNumber,
+            "country" to country,
+            "city" to city,
+            "description" to description,
+            "avatar" to avatar
+        )
     }
 }

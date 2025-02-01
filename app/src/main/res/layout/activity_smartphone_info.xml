@@ -48,7 +48,7 @@
             android:layout_height="24dp"
             android:layout_gravity="end"
             android:layout_marginTop="2dp"
-            android:layout_marginEnd="78dp"
+            android:layout_marginEnd="82dp"
             android:src="@drawable/not_in_favorites" />
     </FrameLayout>
 
@@ -74,6 +74,7 @@
                     style="@style/characteristicName"
                     android:text="@string/name" />
                 <TextView
+                    android:id="@+id/name"
                     style="@style/character"
                     android:text="@string/name" />
             </FrameLayout>
@@ -84,6 +85,7 @@
                     style="@style/characteristicName"
                     android:text="@string/manufacturer_code" />
                 <TextView
+                    android:id="@+id/manufacturerCode"
                     style="@style/character"
                     android:text="@string/manufacturer_code" />
             </FrameLayout>
@@ -93,6 +95,7 @@
                     style="@style/characteristicName"
                     android:text="@string/phone_brand" />
                 <TextView
+                    android:id="@+id/phoneBrand"
                     style="@style/character"
                     android:text="@string/phone_brand" />
             </FrameLayout>
@@ -103,6 +106,7 @@
                     style="@style/characteristicName"
                     android:text="@string/phone_model" />
                 <TextView
+                    android:id="@+id/phoneModel"
                     style="@style/character"
                     android:text="@string/phone_model" />
             </FrameLayout>
@@ -112,6 +116,7 @@
                     style="@style/characteristicName"
                     android:text="@string/ean" />
                 <TextView
+                    android:id="@+id/ean"
                     style="@style/character"
                     android:text="@string/ean" />
             </FrameLayout>
@@ -127,6 +132,7 @@
                     style="@style/characteristicName"
                     android:text="@string/color" />
                 <TextView
+                    android:id="@+id/color"
                     style="@style/character"
                     android:text="@string/color" />
             </FrameLayout>
@@ -137,6 +143,7 @@
                     style="@style/characteristicName"
                     android:text="@string/material" />
                 <TextView
+                    android:id="@+id/material"
                     style="@style/character"
                     android:text="@string/material" />
             </FrameLayout>
@@ -146,6 +153,7 @@
                     style="@style/characteristicName"
                     android:text="@string/width" />
                 <TextView
+                    android:id="@+id/width"
                     style="@style/character"
                     android:text="@string/width" />
             </FrameLayout>
@@ -156,6 +164,7 @@
                     style="@style/characteristicName"
                     android:text="@string/height" />
                 <TextView
+                    android:id="@+id/height"
                     style="@style/character"
                     android:text="@string/height" />
             </FrameLayout>
@@ -165,6 +174,7 @@
                     style="@style/characteristicName"
                     android:text="@string/depth" />
                 <TextView
+                    android:id="@+id/depth"
                     style="@style/character"
                     android:text="@string/depth" />
             </FrameLayout>
@@ -175,6 +185,7 @@
                     style="@style/characteristicName"
                     android:text="@string/weight" />
                 <TextView
+                    android:id="@+id/weight"
                     style="@style/character"
                     android:text="@string/weight" />
             </FrameLayout>
@@ -190,6 +201,7 @@
                     style="@style/characteristicName"
                     android:text="@string/screen_diagonal" />
                 <TextView
+                    android:id="@+id/screenDiagonal"
                     style="@style/character"
                     android:text="@string/screen_diagonal" />
             </FrameLayout>
@@ -200,6 +212,7 @@
                     style="@style/characteristicName"
                     android:text="@string/display_type" />
                 <TextView
+                    android:id="@+id/displayType"
                     style="@style/character"
                     android:text="@string/display_type" />
             </FrameLayout>
@@ -209,6 +222,7 @@
                     style="@style/characteristicName"
                     android:text="@string/touch_screen" />
                 <TextView
+                    android:id="@+id/touchScreen"
                     style="@style/character"
                     android:text="@string/touch_screen" />
             </FrameLayout>
@@ -219,6 +233,7 @@
                     style="@style/characteristicName"
                     android:text="@string/pixel_density" />
                 <TextView
+                    android:id="@+id/pixelDensity"
                     style="@style/character"
                     android:text="@string/pixel_density" />
             </FrameLayout>
@@ -228,6 +243,7 @@
                     style="@style/characteristicName"
                     android:text="@string/screen_resolution" />
                 <TextView
+                    android:id="@+id/screenResolution"
                     style="@style/character"
                     android:text="@string/screen_resolution" />
             </FrameLayout>
@@ -243,6 +259,7 @@
                     style="@style/characteristicName"
                     android:text="@string/rear_camera_resolution" />
                 <TextView
+                    android:id="@+id/rearCameraResolution"
                     style="@style/character"
                     android:text="@string/rear_camera_resolution" />
             </FrameLayout>
@@ -253,6 +270,7 @@
                     style="@style/characteristicName"
                     android:text="@string/front_camera_resolution" />
                 <TextView
+                    android:id="@+id/frontCameraResolution"
                     style="@style/character"
                     android:text="@string/front_camera_resolution" />
             </FrameLayout>
@@ -262,6 +280,7 @@
                     style="@style/characteristicName"
                     android:text="@string/camera_features" />
                 <TextView
+                    android:id="@+id/cameraFreatures"
                     style="@style/character"
                     android:text="@string/camera_features" />
             </FrameLayout>
@@ -272,6 +291,7 @@
                     style="@style/characteristicName"
                     android:text="@string/resolution_of_recorded_videos" />
                 <TextView
+                    android:id="@+id/resolutionOfRecordedVideos"
                     style="@style/character"
                     android:text="@string/resolution_of_recorded_videos" />
             </FrameLayout>
@@ -287,6 +307,7 @@
                     style="@style/characteristicName"
                     android:text="@string/processor" />
                 <TextView
+                    android:id="@+id/processor"
                     style="@style/character"
                     android:text="@string/processor" />
             </FrameLayout>
@@ -297,6 +318,7 @@
                     style="@style/characteristicName"
                     android:text="@string/processor_frequency" />
                 <TextView
+                    android:id="@+id/processorFrequency"
                     style="@style/character"
                     android:text="@string/processor_frequency" />
             </FrameLayout>
@@ -306,6 +328,7 @@
                     style="@style/characteristicName"
                     android:text="@string/number_of_processor_cores" />
                 <TextView
+                    android:id="@+id/numberOfProcessorCores"
                     style="@style/character"
                     android:text="@string/number_of_processor_cores" />
             </FrameLayout>
@@ -321,6 +344,7 @@
                     style="@style/characteristicName"
                     android:text="@string/builtInMemory" />
                 <TextView
+                    android:id="@+id/builtInMemory"
                     style="@style/character"
                     android:text="@string/builtInMemory" />
             </FrameLayout>
@@ -331,6 +355,7 @@
                     style="@style/characteristicName"
                     android:text="@string/ramMemory" />
                 <TextView
+                    android:id="@+id/ramMemory"
                     style="@style/character"
                     android:text="@string/ramMemory" />
             </FrameLayout>
@@ -340,6 +365,7 @@
                     style="@style/characteristicName"
                     android:text="@string/operatingSystem" />
                 <TextView
+                    android:id="@+id/operatingSystem"
                     style="@style/character"
                     android:text="@string/operatingSystem" />
             </FrameLayout>
@@ -350,6 +376,7 @@
                     style="@style/characteristicName"
                     android:text="@string/batteryCapacity" />
                 <TextView
+                    android:id="@+id/batteryCapacity"
                     style="@style/character"
                     android:text="@string/batteryCapacity" />
             </FrameLayout>
@@ -359,6 +386,7 @@
                     style="@style/characteristicName"
                     android:text="@string/connectors" />
                 <TextView
+                    android:id="@+id/connectors"
                     style="@style/character"
                     android:text="@string/connectors" />
             </FrameLayout>
