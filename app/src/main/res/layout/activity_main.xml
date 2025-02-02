@@ -51,6 +51,30 @@
             android:src="@drawable/in_favorites" />
     </FrameLayout>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <EditText
+            android:id="@+id/find"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/find_smartphone"
+            android:padding="12dp"
+            android:paddingBottom="52dp"/>
+
+        <ImageView
+            android:id="@+id/findButton"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:layout_gravity="end"
+            android:padding="10dp"
+            android:src="@drawable/lupa" />
+    </FrameLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -1,7 +1,6 @@
 package com.example.androidapp
 
-import android.app.ActionBar
-import android.app.Activity
+
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -25,7 +24,6 @@ class MainForAdminActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainForAdminBinding
     private lateinit var db: FirebaseFirestore
 
-    private lateinit var adapter: ImageSliderAdapter
     private val selectedImages = mutableListOf<ByteArray>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +55,7 @@ class MainForAdminActivity : AppCompatActivity() {
         //this.binding.backIcon.setOnClickListener { showMainPage() }
         //this.binding.backLabel.setOnClickListener { showMainPage() }
         this.binding.createButton.setOnClickListener { createSmartphone() }
-        this.binding.chooseImages.setOnClickListener { chooseImages() }
+        //this.binding.chooseImages.setOnClickListener { chooseImages() }
 
     }
 
@@ -121,7 +119,7 @@ class MainForAdminActivity : AppCompatActivity() {
             }
     }
 
-    fun chooseImages() {
+    /*fun chooseImages() {
         selectedImages.clear()
         val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
             type = "image/*"
@@ -157,5 +155,7 @@ class MainForAdminActivity : AppCompatActivity() {
     companion object {
         private const val PICK_IMAGES = 1
     }
+    */
+     */
 
 }

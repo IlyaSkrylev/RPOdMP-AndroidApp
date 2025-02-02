@@ -189,4 +189,12 @@ class FavoritesActivity : AppCompatActivity() {
                 Toast.makeText(this, "Error: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
+
+    override fun onBackPressed() {
+        if(true){
+            showMainPage()
+        } else {
+            super.onBackPressed()
+        }
+    }
 }

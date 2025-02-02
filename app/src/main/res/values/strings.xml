@@ -70,4 +70,5 @@
     <string name="urlToImage">URL to images</string>
     <string name="memory">Memory</string>
     <string name="camera">Camera</string>
+    <string name="find_smartphone">Find smartphone</string>
 </resources>

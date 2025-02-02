@@ -209,4 +209,12 @@ class RegisterActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+    override fun onBackPressed() {
+        if(true){
+            showLoginPage()
+        } else {
+            super.onBackPressed()
+        }
+    }
 }

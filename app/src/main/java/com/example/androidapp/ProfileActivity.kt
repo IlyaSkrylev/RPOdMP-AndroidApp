@@ -2,6 +2,7 @@ package com.example.androidapp
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -45,6 +46,10 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.toObject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.io.File
+import java.io.FileOutputStream
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -195,7 +200,7 @@ class ProfileActivity : AppCompatActivity() {
             country,
             city,
             description,
-            Base64.encodeToString(img, Base64.DEFAULT)
+            Base64.encodeToString(compressImageViewToByteArray(this.binding.userAvatar, 10), Base64.DEFAULT)
             )
 
         db = FirebaseFirestore.getInstance()
@@ -378,20 +383,28 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    fun User.toMap(): Map<String, Any> {
-        return mapOf(
-            "email" to email,
-            "uid" to uid,
-            "firstName" to firstName,
-            "lastName" to lastName,
-            "patronymic" to patronymic,
-            "birthDate" to birthDate,
-            "sex" to sex,
-            "telNumber" to telephoneNumber,
-            "country" to country,
-            "city" to city,
-            "description" to description,
-            "avatar" to avatar
-        )
+    override fun onBackPressed() {
+        if(true){
+            showMainPage()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    fun compressImageViewToByteArray(
+        imageView: ImageView,
+        quality: Int = 80,
+    ) : ByteArray? {
+        val drawable = imageView.drawable
+        if (drawable == null || drawable !is BitmapDrawable) {
+            return null
+        }
+        val bitmap = drawable.bitmap
+        val outputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream)
+        bitmap.recycle()
+
+        val byteArray = outputStream.toByteArray()
+        return byteArray
     }
 }

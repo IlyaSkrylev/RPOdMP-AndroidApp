@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.FrameLayout
@@ -23,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -43,9 +46,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimary)
-        }
+        window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimary)
 
         this.auth = Firebase.auth
         this.user = auth.currentUser
@@ -60,7 +61,14 @@ class MainActivity : AppCompatActivity() {
         this.binding.profileLabel.setOnClickListener { showProfilePage() }
         this.binding.profileIcon.setOnClickListener { showProfilePage() }
 
-        ShowSmartphones()
+        val find = this.binding.find
+        find.setOnClickListener { ShowSmartphones(this.binding.find.text.toString()) }
+        find.addTextChangedListener( object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { }
+            override fun afterTextChanged(s: Editable?) { ShowSmartphones(find.text.toString()) }
+        })
+        ShowSmartphones("")
     }
 
     fun showFavoritesPage() {
@@ -75,7 +83,6 @@ class MainActivity : AppCompatActivity() {
         finish()
     }
 
-    @SuppressLint("SetTextI18n", "MissingInflatedId", "UseCompatLoadingForDrawables")
     fun ShowSmartphones() {
         val userId = user?.uid
         if (userId == "" || userId == null) return
@@ -84,59 +91,85 @@ class MainActivity : AppCompatActivity() {
         db.collection("smartphones")
             .get()
             .addOnSuccessListener { smartphones ->
-                for (smarphone in smartphones) {
-                    try {
-                        val smartphoneInfo = smarphone.toObject(Smartphone::class.java)
-
-                        val inflater = LayoutInflater.from(this)
-                        val view = inflater.inflate(
-                            R.layout.smatrphone_item,
-                            this.binding.smartphones,
-                            false
-                        )
-
-                        val phoneImage = view.findViewById<ImageView>(R.id.phone_image)
-                        Glide.with(this).load(smartphoneInfo.base64Images[0]).into(phoneImage)
-
-                        view.findViewById<TextView>(R.id.phone_name).setText(smartphoneInfo.name)
-                        view.findViewById<TextView>(R.id.phone_color)
-                            .setText(getString(R.string.color) + "s: " + smartphoneInfo.color)
-                        view.findViewById<TextView>(R.id.phone_memory).setText(
-                            getString(R.string.memory) + ": " + smartphoneInfo.builtInMemory
-                                    + "/" + smartphoneInfo.ramMemory
-                        )
-                        view.findViewById<TextView>(R.id.phone_camera).setText(
-                            getString(R.string.camera) + ": " + smartphoneInfo.rearCameraResolution
-                                    + "/" + smartphoneInfo.frontCameraResolution
-                        )
-
-                        val fav = view.findViewById<ImageView>(R.id.favorites)
-                        fav.setOnClickListener { addOrDeleteFromFavorites(fav, smartphoneInfo.ean) }
-
-                        db.collection("favorites").whereEqualTo("userId", userId).limit(1).get()
-                            .addOnSuccessListener { favorite ->
-                                if (!favorite.isEmpty) {
-                                    val document = favorite.first()
-                                    val favoriteInfo = document.toObject(Favorite::class.java)
-
-                                    if (smartphoneInfo.ean in favoriteInfo.smartphonesId){
-                                        fav.setImageDrawable(getDrawable(R.drawable.in_favorites))
-                                    }
-                                }
-                            }
-
-
-                        val item = view.findViewById<FrameLayout>(R.id.item)
-                        item.setOnClickListener { showSmartphoneInformationPage(smartphoneInfo.ean) }
-
-                        this.binding.smartphones.addView(view)
-                    } catch (e: Exception) {
-                    }
-                }
+                addSmartphoneItem(smartphones, userId)
             }.addOnFailureListener {
             }
     }
 
+    fun ShowSmartphones(filter: String) {
+        val userId = user?.uid
+        if (userId == "" || userId == null) return
+        db = FirebaseFirestore.getInstance()
+        val query = if (filter.isNotEmpty()) {
+            db.collection("smartphones")
+                .whereGreaterThanOrEqualTo("name", filter)
+                .whereLessThan("name", filter + "\uf8ff")
+        } else {
+            db.collection("smartphones")
+        }
+
+        query.get()
+            .addOnSuccessListener { smartphones ->
+                this.binding.smartphones.removeAllViews()
+                addSmartphoneItem(smartphones, userId)
+            }.addOnFailureListener { exception ->
+            }
+    }
+
+    @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables")
+    fun addSmartphoneItem(smartphones: QuerySnapshot, userId: String?){
+        for (smartphone in smartphones) {
+            val smartphoneInfo = smartphone.toObject(Smartphone::class.java)
+
+            val inflater = LayoutInflater.from(this)
+            val view = inflater.inflate(
+                R.layout.smatrphone_item,
+                this.binding.smartphones,
+                false
+            )
+
+            val phoneImage = view.findViewById<ImageView>(R.id.phone_image)
+            Glide.with(this)
+                .load(smartphoneInfo.base64Images[0])
+                .placeholder(R.drawable.image_default)
+                .error(R.drawable.image_default)
+                .into(phoneImage)
+
+            view.findViewById<TextView>(R.id.phone_name).setText(smartphoneInfo.name)
+            view.findViewById<TextView>(R.id.phone_color)
+                .setText(getString(R.string.color) + "s: " + smartphoneInfo.color)
+            view.findViewById<TextView>(R.id.phone_memory).setText(
+                getString(R.string.memory) + ": " + smartphoneInfo.builtInMemory
+                        + "/" + smartphoneInfo.ramMemory
+            )
+            view.findViewById<TextView>(R.id.phone_camera).setText(
+                getString(R.string.camera) + ": " + smartphoneInfo.rearCameraResolution
+                        + "/" + smartphoneInfo.frontCameraResolution
+            )
+
+            val fav = view.findViewById<ImageView>(R.id.favorites)
+            fav.setOnClickListener { addOrDeleteFromFavorites(fav, smartphoneInfo.ean) }
+
+            db.collection("favorites").whereEqualTo("userId", userId).limit(1).get()
+                .addOnSuccessListener { favorite ->
+                    if (!favorite.isEmpty) {
+                        val document = favorite.first()
+                        val favoriteInfo = document.toObject(Favorite::class.java)
+
+                        if (smartphoneInfo.ean in favoriteInfo.smartphonesId) {
+                            fav.setImageDrawable(getDrawable(R.drawable.in_favorites))
+                        }
+                    }
+                }
+
+            val item = view.findViewById<FrameLayout>(R.id.item)
+            item.setOnClickListener { showSmartphoneInformationPage(smartphoneInfo.ean) }
+
+            this.binding.smartphones.addView(view)
+        }
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
     fun addOrDeleteFromFavorites(imageView: ImageView, smartphoneId: String?) {
         val userId = user?.uid
         val userEmail = user?.email

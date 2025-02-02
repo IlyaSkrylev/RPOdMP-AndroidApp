@@ -1,28 +1,37 @@
 package com.example.androidapp
 
-import android.graphics.BitmapFactory
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
-class ImageSliderAdapter(private val images: List<ByteArray>) : RecyclerView.Adapter<ImageSliderAdapter.ImageViewHolder>() {
-
-    class ImageViewHolder(val imageView: ImageView) : RecyclerView.ViewHolder(imageView)
+class ImageSliderAdapter(private val imageUrls: List<String>) :
+    RecyclerView.Adapter<ImageSliderAdapter.ImageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
-        val imageView = ImageView(parent.context)
-        imageView.layoutParams = ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
-        )
-        imageView.scaleType = ImageView.ScaleType.FIT_CENTER
-        return ImageViewHolder(imageView)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_image_slider, parent, false)
+        return ImageViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        val byteArray = images[position]
-        holder.imageView.setImageBitmap(BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size))
+        val imageUrl = imageUrls[position]
+        Glide.with(holder.itemView.context)
+            .load(imageUrl)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .placeholder(R.drawable.image_default)
+            .error(R.drawable.image_default)
+            .into(holder.imageView)
     }
 
-    override fun getItemCount() = images.size
+    override fun getItemCount(): Int = imageUrls.size
+
+
+    class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val imageView: ImageView = itemView.findViewById(R.id.imageView)
+    }
 }
+
