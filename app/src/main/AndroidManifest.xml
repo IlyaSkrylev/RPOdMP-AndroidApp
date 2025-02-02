@@ -9,18 +9,21 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/android_apple"
-        android:label=""
+        android:label="AndroidApp"
         android:roundIcon="@drawable/android_apple"
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Light"
         tools:targetApi="31">
         <activity
+            android:name=".FavoritesActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainForAdminActivity"
-            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".SmartphoneInfoActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".ProfileActivity"
             android:exported="false"

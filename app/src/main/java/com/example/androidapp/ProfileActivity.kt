@@ -291,7 +291,7 @@ class ProfileActivity : AppCompatActivity() {
         if (userId == null || userId == "") return
 
         db = FirebaseFirestore.getInstance()
-        db.collection("users").whereEqualTo("email", user?.email).get()
+        db.collection("users").whereEqualTo("uid", userId).get()
             .addOnSuccessListener{ documents ->
                 for (document in documents){
                     val userInfo = document.toObject(User::class.java)
