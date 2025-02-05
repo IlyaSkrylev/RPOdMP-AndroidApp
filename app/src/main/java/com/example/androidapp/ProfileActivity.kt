@@ -1,6 +1,7 @@
 package com.example.androidapp
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
@@ -41,6 +42,7 @@ import com.google.firebase.database.FirebaseDatabase
 import java.io.ByteArrayOutputStream
 import android.util.Base64
 import androidx.core.app.ActivityCompat
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -55,7 +57,6 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private var user: FirebaseUser? = null
     private lateinit var binding: ActivityProfileBinding
-    //private lateinit var database: DatabaseReference
     private lateinit var db: FirebaseFirestore
 
     @SuppressLint("MissingInflatedId")
@@ -157,7 +158,57 @@ class ProfileActivity : AppCompatActivity() {
                 }
             }
 
+        this.binding.deleteAccount.setOnClickListener{ deleteAccount() }
+
         ShowUserInfo()
+    }
+
+    private fun deleteAccount() {
+        if (user != null) {
+
+            val builder = AlertDialog.Builder(this)
+
+            builder.setTitle("Comfirm").setMessage("Are you sure?")
+
+                .setPositiveButton("Yes") { dialog, which ->
+                    db = FirebaseFirestore.getInstance()
+                    val usersCollection = db.collection("users")
+                    usersCollection.whereEqualTo("uid", user?.uid).get()
+                        .addOnSuccessListener { querySnapshot ->
+                            if (!querySnapshot.isEmpty) {
+                                for (document in querySnapshot.documents) {
+                                    usersCollection.document(document.id).delete()
+                                        .addOnSuccessListener {
+
+                                        }
+                                        .addOnFailureListener { e ->
+                                        }
+                                }
+                            }
+
+                            val favoriteCollection = db.collection("favorites")
+                            favoriteCollection.whereEqualTo("userId", user?.uid).get()
+                                .addOnSuccessListener { querySnapshot ->
+                                    if (!querySnapshot.isEmpty) {
+                                        for (document in querySnapshot.documents) {
+                                            favoriteCollection.document(document.id).delete()
+                                                .addOnSuccessListener {
+                                                    user?.delete()
+                                                    logOut()
+                                                }
+                                                .addOnFailureListener { e ->
+                                                }
+                                        }
+                                    }
+                                }
+                        }
+                }
+                .setNegativeButton("No") { dialog, which ->
+                }
+
+            val dialog = builder.create()
+            dialog.show()
+        }
     }
 
     private fun logOut() {

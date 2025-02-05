@@ -1,0 +1,83 @@
+<FrameLayout
+    android:id="@+id/item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="15dp"
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/circle_background"
+        android:src="@drawable/profile_icon_empty" />
+    <TextView
+        android:id="@+id/date_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:text="@string/unknown"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="65dp">
+
+        <ImageView
+            android:id="@+id/star_first"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/star_black" />
+
+        <ImageView
+            android:id="@+id/star_second"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/star_black"
+            android:layout_marginStart="20dp"/>
+
+        <ImageView
+            android:id="@+id/star_third"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/star_black"
+            android:layout_marginStart="40dp"/>
+
+        <ImageView
+            android:id="@+id/star_forth"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/star_black"
+            android:layout_marginStart="60dp"/>
+
+        <ImageView
+            android:id="@+id/star_fifth"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/star_black"
+            android:layout_marginStart="80dp"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="45dp" />
+</FrameLayout>

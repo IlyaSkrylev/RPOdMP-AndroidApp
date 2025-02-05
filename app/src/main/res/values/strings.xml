@@ -71,4 +71,14 @@
     <string name="memory">Memory</string>
     <string name="camera">Camera</string>
     <string name="find_smartphone">Find smartphone</string>
+    <string name="save_comment">Save comment</string>
+    <string name="comment">Comment</string>
+    <string name="unknown">Unknown</string>
+    <string name="raiting">Raiting</string>
+    <string name="rating">Rating</string>
+    <string name="deleteAccount">Delete account</string>
+    <string name="search">Search</string>
+    <string name="from">from</string>
+    <string name="to">to</string>
+    <string name="processor_cores">Processor cores</string>
 </resources>

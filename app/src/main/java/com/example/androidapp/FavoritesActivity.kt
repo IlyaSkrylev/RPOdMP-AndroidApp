@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
@@ -126,7 +127,59 @@ class FavoritesActivity : AppCompatActivity() {
         val item = view.findViewById<FrameLayout>(R.id.item)
         item.setOnClickListener{ showSmartphoneInformationPage(smartphoneInfo.ean) }
 
+        getRating(view, smartphoneInfo.ean)
+
         this.binding.smartphones.addView(view)
+    }
+
+    private fun getRating(view: View?, ean: String?){
+        if(view ==null || ean == null) return
+        var rating = 0.0;
+
+        db = FirebaseFirestore.getInstance()
+        db.collection("reviews").document(ean).collection("ratings").get()
+            .addOnSuccessListener { documents ->
+                var sum = 0
+                var count = 0
+                for (document in documents){
+                    val ratingInfo = document.toObject(Rating::class.java)
+                    sum += ratingInfo.rating
+                    count++
+                }
+                if (count != 0)
+                    rating = sum / count.toDouble()
+
+                view.findViewById<TextView>(R.id.rating).setText(String.format("%.2f", rating))
+
+                showRating(view, rating)
+            }
+            .addOnFailureListener{
+                rating = 0.0
+            }
+
+        return
+    }
+
+    private fun showRating(view: View?, rating: Double){
+        if (view == null) return
+        val imgStars = listOf(
+            view.findViewById<ImageView>(R.id.star_first),
+            view.findViewById<ImageView>(R.id.star_second),
+            view.findViewById<ImageView>(R.id.star_third),
+            view.findViewById<ImageView>(R.id.star_forth),
+            view.findViewById<ImageView>(R.id.star_fifth)
+        )
+
+        var i = 0
+        val rait = Math.round(rating)
+        for (star in imgStars){
+            i++
+            if (i <= rait){
+                star.setImageResource(R.drawable.star_yellow)
+            } else {
+                star.setImageResource(R.drawable.star_black)
+            }
+        }
     }
 
     private fun showSmartphoneInformationPage(ean: String?) {

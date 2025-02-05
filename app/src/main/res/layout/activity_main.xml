@@ -60,20 +60,235 @@
             android:id="@+id/find"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
             android:background="@drawable/edit_text_background"
-            android:hint="@string/find_smartphone"
+            android:hint="@string/search"
             android:padding="12dp"
-            android:paddingBottom="52dp"/>
+            android:layout_marginEnd="50dp"/>
 
         <ImageView
             android:id="@+id/findButton"
             android:layout_width="47dp"
             android:layout_height="47dp"
             android:layout_gravity="end"
+            android:layout_marginEnd="50dp"
             android:padding="10dp"
             android:src="@drawable/lupa" />
+
+        <ImageView
+            android:id="@+id/filterButton"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:layout_gravity="end"
+            android:padding="10dp"
+            android:src="@drawable/filter" />
     </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/generalCaption"
+                android:text="@string/phone_brand"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@drawable/view_gray_borders" />
+
+                <Spinner
+                    android:id="@+id/spinner_brands"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/generalCaption"
+                android:text="@string/ramMemory"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/from"
+                android:layout_marginStart="47dp"/>
+
+            <EditText
+                android:id="@+id/ramFrom"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginStart="10dp"
+                android:padding="5dp"
+                android:hint="@string/from"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/to"
+                android:layout_marginStart="20dp"/>
+
+            <EditText
+                android:id="@+id/ramTo"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginStart="10dp"
+                android:padding="5dp"
+                android:hint="@string/to"
+                android:inputType="number"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+            <TextView
+                style="@style/generalCaption"
+                android:text="@string/builtInMemory"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/from"
+                android:layout_marginStart="31dp"/>
+
+            <EditText
+                android:id="@+id/memoryFrom"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginStart="10dp"
+                android:padding="5dp"
+                android:hint="@string/from"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/to"
+                android:layout_marginStart="20dp"/>
+
+            <EditText
+                android:id="@+id/memoryTo"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginStart="10dp"
+                android:padding="5dp"
+                android:hint="@string/to"
+                android:inputType="number"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+            <TextView
+                style="@style/generalCaption"
+                android:text="@string/batteryCapacity"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/from"
+                android:layout_marginStart="30dp"/>
+
+            <EditText
+                android:id="@+id/batteryFrom"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginStart="10dp"
+                android:padding="5dp"
+                android:hint="@string/from"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/to"
+                android:layout_marginStart="20dp"/>
+
+            <EditText
+                android:id="@+id/batteryTo"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginStart="10dp"
+                android:padding="5dp"
+                android:hint="@string/to"
+                android:inputType="number"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+            <TextView
+                style="@style/generalCaption"
+                android:text="@string/processor_cores"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/from"
+                android:layout_marginStart="30dp"/>
+
+            <EditText
+                android:id="@+id/coresFrom"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginStart="10dp"
+                android:padding="5dp"
+                android:hint="@string/from"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/to"
+                android:layout_marginStart="20dp"/>
+
+            <EditText
+                android:id="@+id/coresTo"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginStart="10dp"
+                android:padding="5dp"
+                android:hint="@string/to"
+                android:inputType="number"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/filterSearch"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:layout_gravity="end"
+            android:text="@string/search"
+            android:background="@drawable/rounded_button_corners"/>
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
